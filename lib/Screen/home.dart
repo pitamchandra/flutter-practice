@@ -40,6 +40,13 @@ class Home extends StatelessWidget {
             color: Colors.brown[200],
             child: CoffeePref(),
           ),
+          Expanded(
+            child: Image.asset(
+              'assets/images/coffee_bg.jpg',
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.bottomCenter,
+            ),
+          ),
         ],
       ),
       floatingActionButton: Container(
