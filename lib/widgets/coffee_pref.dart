@@ -1,3 +1,4 @@
+import 'package:coffee_card/customWidgets/StyleBodyText.dart';
 import 'package:flutter/material.dart';
 
 class CoffeePref extends StatefulWidget {
@@ -29,14 +30,15 @@ class _CoffeePrefState extends State<CoffeePref> {
       children: [
         Row(
           children: [
-            Text("Strength: "),
-            Text('$strength'),
-            Image.asset(
-              'assets/images/coffee_bean.png',
-              width: 30,
-              color: Colors.brown[200],
-              colorBlendMode: BlendMode.multiply,
-            ),
+            StyleBodyText("Strength: "),
+            SizedBox(width: 20),
+            for (int i = 0; i < strength; i++)
+              Image.asset(
+                'assets/images/coffee_bean.png',
+                width: 30,
+                color: Colors.brown[200],
+                colorBlendMode: BlendMode.multiply,
+              ),
             Expanded(child: SizedBox()),
             FilledButton(
               style: FilledButton.styleFrom(
@@ -48,22 +50,25 @@ class _CoffeePrefState extends State<CoffeePref> {
             ),
           ],
         ),
-
         Row(
           children: [
-            Text("Sugars: "),
-            Text('$sugar'),
-            Image.asset(
-              'assets/images/sugar_cube.png',
-              width: 30,
-              color: Colors.brown[200],
-              colorBlendMode: BlendMode.multiply,
-            ),
+            StyleBodyText("Sugars: "),
+            SizedBox(width: 20),
+            if (sugar == 0) StyleBodyText("no sugar..."),
+
+            for (int i = 0; i < sugar; i++)
+              Image.asset(
+                'assets/images/sugar_cube.png',
+                width: 30,
+                color: Colors.brown[200],
+                colorBlendMode: BlendMode.multiply,
+              ),
             Expanded(child: SizedBox()),
             TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: Colors.brown[800],
                 foregroundColor: Colors.white,
+                padding: EdgeInsets.all(2),
               ),
               onPressed: increaseSugar,
               child: Text("+"),
