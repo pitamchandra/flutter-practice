@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 
-class CoffeePref extends StatelessWidget {
+class CoffeePref extends StatefulWidget {
   const CoffeePref({super.key});
+
+  @override
+  State<CoffeePref> createState() => _CoffeePrefState();
+}
+
+class _CoffeePrefState extends State<CoffeePref> {
+  int strength = 1;
+  int sugar = 1;
+
+  void increaseStrength() {
+    setState(() {
+      strength = strength < 5 ? strength + 1 : 1;
+    });
+  }
+
+  void increaseSugar() {
+    setState(() {
+      sugar = sugar < 5 ? sugar + 1 : 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,28 +30,44 @@ class CoffeePref extends StatelessWidget {
         Row(
           children: [
             Text("Strength: "),
-            Text('3'),
+            Text('$strength'),
             Image.asset(
               'assets/images/coffee_bean.png',
-              width: 50,
+              width: 30,
               color: Colors.brown[200],
               colorBlendMode: BlendMode.multiply,
             ),
-            SizedBox(width: 20),
+            Expanded(child: SizedBox()),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.brown[800],
+                foregroundColor: const Color(0xFFFFFFFF),
+              ),
+              onPressed: increaseStrength,
+              child: Text("+"),
+            ),
           ],
         ),
 
         Row(
           children: [
             Text("Sugars: "),
-            Text('3'),
+            Text('$sugar'),
             Image.asset(
               'assets/images/sugar_cube.png',
-              width: 50,
+              width: 30,
               color: Colors.brown[200],
               colorBlendMode: BlendMode.multiply,
             ),
-            SizedBox(width: 50),
+            Expanded(child: SizedBox()),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.brown[800],
+                foregroundColor: Colors.white,
+              ),
+              onPressed: increaseSugar,
+              child: Text("+"),
+            ),
           ],
         ),
       ],
